@@ -1,39 +1,66 @@
-import React from 'react'
-import NavbarStudent from './NavBar'
+import React, { useEffect, useState } from 'react'
+
+import axios from 'axios'
+import NavBar from './NavBar'
 
 const ViewStudent = () => {
-  const [data, changeData] = useState(
+  const [data, changeData] =useState(
     [
-      { "name": "Achu", "admin_no": 101, "rollno": 1 },
-      { "name": "Athi", "admin_no": 102, "rollno": 2 },
-      { "name": "jo", "admin_no": 103, "rollno": 3 }
+
+     
+
     ]
   )
+  const fetchData = () => {
+    axios.get("http://localhost:8098/view")
+        .then(response => {
+            console.log(response.data)
+            changeData(response.data)
+        })
+        .catch(error => {
+            console.error(error)
+            alert(error.message)
+        }).finally()
+}
+
+useEffect(() => {
+    fetchData()
+}, [])
   return (
     <div>
-      <NavbarStudent />
+      <NavBar/>
       <div className="container">
         <div className="row">
           <div className="col col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
 
             <div className="row g-3">
-              {data.map(
-                (value, index) => {
-                  return <div className="col col-12 col-sm-6 col-md-4 col-lg-3 col-xl-3 col-xxl-3">
-                    <div class="card" >
-                      <img src="https://altasmiles.com/wp-content/uploads/2019/10/iStock-510857204.jpg" class="card-img-top" alt="..." height="500" />
-                      <div class="card-body">
-                        <h5 class="card-title">{value.name}</h5>
-                        <p>rollno{value.admin_no}</p>
+            <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    
+                                    <th scope="col">Roll no</th>
+                                    <th scope="col">Admno</th>
+                                    <th scope="col">College</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    data.map(
+                                        (value, index) => {
+                                            return <tr>
+                                                <td>{value.name}</td>
+                                                <td>{value.rollno}</td>
+                                                <td>{value.admno}</td>
+                                                <td>{value.college}</td>
+                                               
+                                            </tr>
+                                        }
+                                    )
+                                }
 
-                        <a href="#" class="btn btn-primary">View More</a>
-
-                      </div>
-                    </div>
-                  </div>
-                }
-              )}
-
+                            </tbody>
+                        </table>
 
 
             </div>
@@ -42,8 +69,8 @@ const ViewStudent = () => {
       </div>
     </div>
 
+
   )
 }
 
 export default ViewStudent
-

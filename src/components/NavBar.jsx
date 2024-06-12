@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const NavbarStudent = () => {
+const NavBar = () => {
     return (
         <div>
             <nav class="navbar navbar-expand-lg bg-warning">
@@ -13,16 +13,16 @@ const NavbarStudent = () => {
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <Link class="nav-link active" aria-current="page" href="/">Add</Link>
+                                <Link class="nav-link active" aria-current="page" to="/">Add</Link>
                             </li>
                             <li class="nav-item">
-                                <Link class="nav-link active" aria-current="page" href="/Search">Search</Link>
+                                <Link class="nav-link active" aria-current="page" to="/Search">Search</Link>
                             </li>
                             <li class="nav-item">
-                                <Link class="nav-link active" aria-current="page" href="/Delete">Delete</Link>
+                                <Link class="nav-link active" aria-current="page" to="/Delete">Delete</Link>
                             </li>
                             <li class="nav-item">
-                                <Link class="nav-link active" aria-current="page" href="/View">View</Link>
+                                <Link class="nav-link active" aria-current="page" to="/View">View</Link>
                             </li>
                            
                             
@@ -35,4 +35,4 @@ const NavbarStudent = () => {
     )
 }
 
-export default NavbarStudent
+export default NavBar
